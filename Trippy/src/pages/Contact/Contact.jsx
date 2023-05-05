@@ -1,12 +1,22 @@
-import './Contact.css'
+import Hero from "../../components/Hero/Hero"
+import Navbar from "../../components/Navbar/Navbar"
+import ContactImg from '../../assets/2.jpg'
+
 
 import React from 'react'
 
 function Contact() {
   return (
-    <div>
-      Contact
-    </div>
+    <>
+    <Navbar/>
+    <Hero 
+    cName="hero-mid"
+    heroImg={ContactImg}
+    title="Contact"
+    btnClass="hide"
+    textCName="hero-mid-text"
+    />
+  </>
   )
 }
 
