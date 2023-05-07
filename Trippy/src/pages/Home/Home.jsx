@@ -1,6 +1,8 @@
 import Hero from "../../components/Hero/Hero"
 import Navbar from "../../components/Navbar/Navbar"
 import imgUrl from '../../assets/hero.jpg'
+import Destination from "../../components/Destination/Destination"
+import Trip from "../../components/Trip/Trip"
 
 function Home() {
   return (
@@ -16,6 +18,8 @@ function Home() {
       btnClass="show"
       textCName="hero-text"
       />
+      <Destination/>
+      <Trip/>
     </>
   )
 }
