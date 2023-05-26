@@ -1,4 +1,4 @@
-import './Destination/Destination.css'
+
 
 const DestinationData = (props) => {
   return (

@@ -3,6 +3,8 @@ import Navbar from "../../components/Navbar/Navbar"
 import ServiceImg from '../../assets/night.jpg'
 
 import React from 'react'
+import Footer from "../../components/Footer/Footer"
+import Trip from "../../components/Trip/Trip"
 
 function Service() {
   return (
@@ -15,6 +17,8 @@ function Service() {
     btnClass="hide"
     textCName="hero-mid-text"
     />
+    <Trip/>
+    <Footer/>
   </>
   )
 }

@@ -3,6 +3,7 @@ import Navbar from "../../components/Navbar/Navbar"
 import imgUrl from '../../assets/hero.jpg'
 import Destination from "../../components/Destination/Destination"
 import Trip from "../../components/Trip/Trip"
+import Footer from "../../components/Footer/Footer"
 
 function Home() {
   return (
@@ -20,6 +21,7 @@ function Home() {
       />
       <Destination/>
       <Trip/>
+      <Footer/>
     </>
   )
 }

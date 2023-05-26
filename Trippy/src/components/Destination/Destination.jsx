@@ -1,5 +1,5 @@
-import DestinationData from "../DestinationData"
-import './Destination.css'
+import DestinationData from "../Destination/DestinationData"
+import '../Destination/Destination.css'
 import Mountain1 from "../../assets/1.jpg"
 import Mountain2 from "../../assets/2.jpg"
 import Mountain3 from '../../assets/5.jpg'
