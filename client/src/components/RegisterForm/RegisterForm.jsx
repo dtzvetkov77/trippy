@@ -1,26 +1,37 @@
-import { useState } from 'react'
+import { useState, useContext } from 'react'
 import './RegisterForm.css'
+import {  useNavigate } from "react-router-dom";
+import axios from "axios";
+import { AuthContext } from '../../Context/AuthContext';
+import { Link } from 'react-router-dom';
 
 
 const RegisterForm = () => {
-  const [state, setState] = useState({
+    const navigate = useNavigate();
+
+    const { userRegister } = useContext(AuthContext);
+
+  const [user, setUser] = useState({
     username: '',
     email:'',
     password: '',
   })
   const changeHandler = (e) => {
-      setState((state) => ({
+      setUser((state) => ({
         ...state,
         [e.target.name]: e.target.value
       }))
   }
 
-  const submitHandler = (e) => {
+
+  const submitHandler = async (e) => {
       e.preventDefault();
-      console.log(state)
+     axios.post('/api/auth/register', user)
+     userRegister(user)
+      navigate('/login')
   }
 
-  console.log(state)
+  
   return (
     <div className='form-container'>
       <h1>Register</h1>
@@ -29,23 +40,25 @@ const RegisterForm = () => {
       type='text'
       name='username'
       placeholder='Username' 
-      value={state.username} 
+      value={user.username} 
       onChange={changeHandler}  />
       <input 
       type='email'
       placeholder='Email'
-      value={state.email}
+      value={user.email}
       name='email'
       onChange={changeHandler}
        />
       <input 
       type='text'
       placeholder='Password'
-      value={state.password}
+      value={user.password}
       name='password'
       onChange={changeHandler}
        />
+       
       <button>Register</button>
+      <p className='login-link'>You have an account?<Link style={{textDecoration: 'none', color: 'black'}} to='/login'><span>Log in</span></Link></p>
       </form>
     </div>
   )

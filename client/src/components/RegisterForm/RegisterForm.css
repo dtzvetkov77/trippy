@@ -32,6 +32,19 @@
     display: inline;   
 }
 
+.login-link{
+    padding: 1rem;
+}
+
+.login-link span {
+    padding-left: 0.3rem;
+}
+
+.login-link span:hover{
+    color: #01959a;
+}
+
+
 @media screen and (max-width: 850px) {
     .form-container{
         margin: 4rem 2rem;
