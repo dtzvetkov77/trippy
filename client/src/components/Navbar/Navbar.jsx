@@ -1,13 +1,18 @@
 import "./Navbar.css";
-import { MenuItems } from "../MenuItems";
-import { useContext, useState } from "react";
-import { Link } from "react-router-dom";
-import { AuthContext } from "../../Context/AuthContext";
+import {  useState, useContext } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import {AuthContext} from "../../Context/AuthContext";
 
 function Navbar() {
-  const { user, handleLogout } = useContext(AuthContext);
+  const navigate = useNavigate();
   const [clicked, setClicked] = useState(false);
-
+  const { isAuthorized } = useContext(AuthContext);
+  const authorized = isAuthorized()
+  const user = localStorage.getItem('username')
+  const handleLogout = () => {
+    localStorage.removeItem('token')
+    navigate('/login')
+  }
   const handleClick = () => setClicked((prevClick) => !prevClick);
   return (
     <nav className="NavbarItems">
@@ -28,20 +33,23 @@ function Navbar() {
           <Link className="nav-links" to="/service">
             <i className="fa-solid fa-briefcase"></i>Service
           </Link>
-          {user ? (
+          
             <Link className="nav-links" to="/contact">
               <i className="fa-solid fa-address-book"></i>Contact
             </Link>
-          ) : null}
-        </li>
 
-        {user ? (
-          <button onClick={handleLogout}>Logout</button>
-        ) : (
-          <Link to="/register">
+            {authorized ?
+            <p>Hello, {user}</p>
+          : null}
+        </li>
+         
+         {authorized 
+         ?  <button onClick={handleLogout}>Logout</button>
+         :  <Link to="/register">
             <button>Sign Up</button>
-          </Link>
-        )}
+            </Link>
+        }          
+        
       </ul>
     </nav>
   );
