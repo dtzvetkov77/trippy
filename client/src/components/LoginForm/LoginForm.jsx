@@ -11,6 +11,7 @@ const LoginForm = () => {
     password: '',
   })
   const [errors, setErrors] = useState({});
+  const [authError, setAuthError] = useState("");
 
   const handleChange = (event) => {
     const { name, value } = event.target;
@@ -52,7 +53,6 @@ const LoginForm = () => {
 
         if (response.ok) {
           // User logged in successfully
-          console.log("User logged in!");
           const data = await response.json();
           localStorage.setItem("token", data.token);
           localStorage.setItem("username", formData.username);
@@ -67,11 +67,12 @@ const LoginForm = () => {
           setErrors({});
         } else {
           // Handle error response from the server
-          console.error("Error logging in");
+        
+          setAuthError("Wrong email or password");
         }
       } catch (error) {
         // Handle any network or server error
-        console.error("Error logging in", error);
+        setAuthError("Wrong email or password");
       }
     } else {
       setErrors(formErrors);
@@ -120,6 +121,7 @@ const LoginForm = () => {
       <h1>Login</h1>
 
       <form onSubmit={handleSubmit}>
+        <p className='error'>{authError}</p>
       {errors.username && <p className='error'>{errors.username}</p>}
       <input
       type='text'
@@ -137,6 +139,7 @@ const LoginForm = () => {
       onChange={handleChange}
       onBlur={handleBlur}
        />
+       
       <button>Login</button>
       <p className='login-link'>You don't have an account?<Link style={{textDecoration: 'none', color: 'black'}} to='/register'><span>Register</span></Link></p>
       </form>

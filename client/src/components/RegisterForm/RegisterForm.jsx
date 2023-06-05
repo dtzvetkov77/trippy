@@ -59,9 +59,6 @@ const RegisterForm = () => {
         });
 
         if (response.ok) {
-          // User saved successfully
-          console.log("User registered!");
-
          
           // Reset form data
           setFormData({
