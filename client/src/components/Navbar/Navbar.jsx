@@ -27,9 +27,13 @@ function Navbar() {
           <Link className="nav-links" to="/">
             <i className="fa-solid fa-house-user"></i>Home
           </Link>
-          <Link className="nav-links" to="/about">
-            <i className="fa-solid fa-circle-info"></i>About
+          {authorized 
+          ? <Link className="nav-links" to="/create">
+            <i className="fa-solid fa-circle-info"></i>Create
           </Link>
+          : null
+        }
+          
           <Link className="nav-links" to="/service">
             <i className="fa-solid fa-briefcase"></i>Service
           </Link>
@@ -38,9 +42,6 @@ function Navbar() {
               <i className="fa-solid fa-address-book"></i>Contact
             </Link>
 
-            {authorized ?
-            <p>Hello, {user}</p>
-          : null}
         </li>
          
          {authorized 

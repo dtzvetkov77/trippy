@@ -15,7 +15,7 @@ const DestinationSchema = new mongoose.Schema({
         type: String,
         required: true,
     },
-    author: {
+    owner: {
         type: mongoose.Types.ObjectId,
         ref: 'User'
       }

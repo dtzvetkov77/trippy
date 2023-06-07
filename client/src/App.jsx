@@ -18,7 +18,7 @@ function App() {
   };
 
     const authorized = isAuthorized();
-    
+
   return (
     <AuthContext.Provider value={{isAuthorized}}>
        <div className="App">
@@ -26,6 +26,7 @@ function App() {
         <Route path='/' element={<Home/>} />
         <Route path='/about' element={<About/>} />
         <Route path='/service' element={<Service/>} />
+        <Route path='/create' element={authorized ? <Create/> : <Navigate to="/login"/> }  />
         <Route path='/contact' element={authorized ? <Contact/> : <Navigate to="/login"/> } />
         <Route path='/register' element={authorized ? <Navigate to="/login"/> : <Register/>}/>
         <Route path='/login' element={authorized ? <Navigate to="/"/> : <Login/>}/>
