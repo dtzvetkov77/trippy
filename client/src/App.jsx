@@ -9,18 +9,28 @@ import Login from './pages/Login/Login'
 import Create from './pages/Create/Create'
 
 import { AuthContext } from './Context/AuthContext'
+import { useEffect, useState } from 'react'
 
 
 function App() {
-  const isAuthorized = () => {
-    const token = localStorage.getItem("token");
-    return !!token;
-  };
+  const [authorized, setAuthorized] = useState(false);
 
-    const authorized = isAuthorized();
+  useEffect(() => {
+    const isAuthorized = () => {
+      const token = localStorage.getItem("token");
+      return !!token;
+    };
 
+    const checkAuthorization = () => {
+      const isUserAuthorized = isAuthorized();
+      setAuthorized(isUserAuthorized);
+    };
+
+    checkAuthorization();
+  }, []);
+  
   return (
-    <AuthContext.Provider value={{isAuthorized}}>
+    <AuthContext.Provider value={{authorized, setAuthorized}}>
        <div className="App">
       <Routes>
         <Route path='/' element={<Home/>} />

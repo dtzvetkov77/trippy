@@ -1,16 +1,26 @@
 import "./Navbar.css";
-import {  useState, useContext } from "react";
+import {  useState, useContext, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import {AuthContext} from "../../Context/AuthContext";
 
 function Navbar() {
   const navigate = useNavigate();
   const [clicked, setClicked] = useState(false);
-  const { isAuthorized } = useContext(AuthContext);
-  const authorized = isAuthorized()
-  const user = localStorage.getItem('username')
+  const  {authorized, setAuthorized} = useContext(AuthContext);
+
+  useEffect(() => {
+    const checkAuthorization = () => {
+      const token = localStorage.getItem("token");
+      setAuthorized(!!token);
+    };
+
+    checkAuthorization();
+  }, [setAuthorized]);
+
+
   const handleLogout = () => {
     localStorage.removeItem('token')
+    setAuthorized(false)
     navigate('/login')
   }
   const handleClick = () => setClicked((prevClick) => !prevClick);

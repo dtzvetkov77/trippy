@@ -55,7 +55,6 @@ const LoginForm = () => {
           // User logged in successfully
           const data = await response.json();
           localStorage.setItem("token", data.token);
-          localStorage.setItem("username", formData.username);
           navigate('/')
 
           // Reset form data
