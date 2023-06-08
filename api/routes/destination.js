@@ -58,4 +58,48 @@ router.post('/create', authenticate, (req, res)=> {
     });
 })
 
+// GET /api/destinations/:id - Get destination details
+router.get('/:id', async (req, res) => {
+  try {
+    const destination = await Destination.findById(req.params.id);
+    if (!destination) {
+      return res.status(404).json({ message: 'Destination not found' });
+    }
+    res.json(destination);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: 'Server Error' });
+  }
+});
+
+// PUT /api/destinations/:id - Update destination
+router.put('/:id', async (req, res) => {
+  try {
+    const destination = await Destination.findById(req.params.id);
+    if (!destination) {
+      return res.status(404).json({ message: 'Destination not found' });
+    }
+    destination.title = req.body.title;
+    destination.description = req.body.description;
+    destination.imageUrl = req.body.imageUrl;
+
+    await destination.save();
+    res.json(destination);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: 'Server Error' });
+  }
+});
+
+// DELETE /api/destinations/:id - Delete destination
+router.delete('/:id', async (req, res) => {
+  try {
+    await Destination.findByIdAndDelete(req.params.id);
+    res.json({ message: 'Destination deleted successfully' });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: 'Server Error' });
+  }
+});
+
 module.exports = router;

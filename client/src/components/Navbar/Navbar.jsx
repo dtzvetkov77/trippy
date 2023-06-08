@@ -39,7 +39,7 @@ function Navbar() {
           </Link>
           {authorized 
           ? <Link className="nav-links" to="/create">
-            <i className="fa-solid fa-circle-info"></i>Create
+            <i className="fa-solid fa-pen-to-square"></i>Create
           </Link>
           : null
         }

@@ -7,7 +7,7 @@ import Contact from './pages/Contact/Contact'
 import Register from './pages/Register/Register'
 import Login from './pages/Login/Login'
 import Create from './pages/Create/Create'
-
+import jwt_decode from 'jwt-decode';
 import { AuthContext } from './Context/AuthContext'
 import { useEffect, useState } from 'react'
 
@@ -15,18 +15,32 @@ import { useEffect, useState } from 'react'
 function App() {
   const [authorized, setAuthorized] = useState(false);
 
+  const checkTokenExpiration = (token) => {
+    // Decode the token to extract the expiration time
+    const decodedToken = jwt_decode(token);
+    const expirationTime = decodedToken.exp * 1000; // Convert expiration time to milliseconds
+  
+    // Get the current time
+    const currentTime = Date.now();
+  
+    // Check if the token has expired
+    return currentTime > expirationTime;
+  };
+
   useEffect(() => {
     const isAuthorized = () => {
       const token = localStorage.getItem("token");
       return !!token;
     };
+    const token = localStorage.getItem("token");
+    const isTokenValid = token ? !checkTokenExpiration(token) : false;
 
-    const checkAuthorization = () => {
-      const isUserAuthorized = isAuthorized();
-      setAuthorized(isUserAuthorized);
-    };
-
-    checkAuthorization();
+    if (isTokenValid) {
+      setAuthorized(isAuthorized());
+    } else {
+      setAuthorized(false);
+      localStorage.removeItem("token");
+    }
   }, []);
   
   return (
