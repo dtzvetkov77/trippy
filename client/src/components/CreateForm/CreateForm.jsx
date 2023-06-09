@@ -2,7 +2,8 @@ import { useState } from 'react'
 import {  useNavigate } from "react-router-dom";
 
 
-const CreateForm = () => {
+function CreateForm () {
+  const [destinations, setDestinations] = useState([]);
     const navigate = useNavigate();
     const token = localStorage.getItem('token');
     const [formData, setFormData] = useState({
@@ -77,6 +78,16 @@ const CreateForm = () => {
       return formErrors;
     };
 
+ 
+    const fetchDestinations = async () => {
+      try {
+        await fetch("/api/destination")
+          .then((response) => response.json())
+          .then((data) => setDestinations(data));
+      } catch (error) {
+        console.error(error);
+      }
+    };
   
     const handleSubmit = async (event) => {
       event.preventDefault();
@@ -102,6 +113,7 @@ const CreateForm = () => {
               description: "",
             });
             navigate('/')
+            fetchDestinations();
             setErrors({});
           } else {
             // Handle error response from the server

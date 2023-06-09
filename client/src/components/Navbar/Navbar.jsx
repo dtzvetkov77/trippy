@@ -6,7 +6,7 @@ import {AuthContext} from "../../Context/AuthContext";
 function Navbar() {
   const navigate = useNavigate();
   const [clicked, setClicked] = useState(false);
-  const  {authorized, setAuthorized} = useContext(AuthContext);
+  const  {setUser, authorized, setAuthorized} = useContext(AuthContext);
 
   useEffect(() => {
     const checkAuthorization = () => {
@@ -21,6 +21,7 @@ function Navbar() {
   const handleLogout = () => {
     localStorage.removeItem('token')
     setAuthorized(false)
+    setUser(null)
     navigate('/login')
   }
   const handleClick = () => setClicked((prevClick) => !prevClick);
