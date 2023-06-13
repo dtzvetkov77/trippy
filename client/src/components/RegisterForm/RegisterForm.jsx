@@ -14,8 +14,6 @@ const RegisterForm = () => {
     password: '',
   })
 
-
-  console.log(setFormData)
  
   
   const [errors, setErrors] = useState({});
