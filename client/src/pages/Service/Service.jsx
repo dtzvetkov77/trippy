@@ -4,7 +4,7 @@ import ServiceImg from '../../assets/night.jpg'
 
 import React from 'react'
 import Footer from "../../components/Footer/Footer"
-import Trip from "../../components/Trip/Trip"
+import Search from "../../components/Search/Search"
 
 function Service() {
   return (
@@ -17,7 +17,7 @@ function Service() {
     btnClass="hide"
     textCName="hero-mid-text"
     />
-    <Trip/>
+    <Search/>
     <Footer/>
   </>
   )

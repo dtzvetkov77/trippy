@@ -1,21 +1,21 @@
 import { useState, useContext } from 'react'
 import './RegisterForm.css'
 import {  useNavigate } from "react-router-dom";
-import axios from "axios";
-import { AuthContext } from '../../Context/AuthContext';
 import { Link } from 'react-router-dom';
 
 
 const RegisterForm = () => {
     const navigate = useNavigate();
 
-    const { userRegister } = useContext(AuthContext);
 
   const [formData, setFormData] = useState({
     username: '',
     email:'',
     password: '',
   })
+
+
+  console.log(setFormData)
  
   
   const [errors, setErrors] = useState({});
