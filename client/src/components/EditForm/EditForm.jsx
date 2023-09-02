@@ -19,7 +19,7 @@ const EditForm = () => {
 
   const fetchDestination = async () => {
     try {
-      const response = await fetch(`/api/destination/${id}`);
+      const response = await fetch(`/api/destinations/${id}`);
       if (response.ok) {
         const data = await response.json();
         setDestination(data);
@@ -103,7 +103,7 @@ const EditForm = () => {
     if (Object.keys(formErrors).length === 0) {
       try {
         // Send the form data to the backend API for creating a new destination
-        const response = await fetch(`/api/destination/${id}`, {
+        const response = await fetch(`/api/destinations/${id}`, {
           method: "PUT",
           headers: {
             "Content-Type": "application/json",

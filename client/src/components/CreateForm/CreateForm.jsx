@@ -81,7 +81,7 @@ function CreateForm () {
  
     const fetchDestinations = async () => {
       try {
-        await fetch("/api/destination")
+        await fetch("/api/destinations")
           .then((response) => response.json())
           .then((data) => setDestinations(data));
       } catch (error) {
@@ -95,7 +95,7 @@ function CreateForm () {
       if (Object.keys(formErrors).length === 0) {
         try {
           // Send the form data to the backend API for creating a new destination
-          const response = await fetch("/api/destination/create", {
+          const response = await fetch("/api/destinations/create", {
             method: "POST",
             headers: {
               "Content-Type": "application/json",

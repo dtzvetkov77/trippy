@@ -14,7 +14,7 @@ const Search = () => {
 
   const fetchDestinations = async () => {
     try {
-      const response = await fetch("/api/destination");
+      const response = await fetch("/api/destinations");
       const data = await response.json();
       setDestinations(data);
     } catch (error) {
