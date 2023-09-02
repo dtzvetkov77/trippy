@@ -16,6 +16,6 @@ mongoose.connect(process.env.MONGO_URL)
 .catch(err => console.log(err));
 
 app.use("/api/auth", authRoute);
-app.use('/api/destination', destinationRoute)
+app.use('/api/destinations', destinationRoute)
 
 app.listen('5001', () => console.log('Server is running on port 5001...'));

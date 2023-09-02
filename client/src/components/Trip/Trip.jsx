@@ -25,7 +25,7 @@ const Trip = () => {
 
   const fetchDestinations = async () => {
     try {
-      await fetch("/api/destination")
+      await fetch("/api/destinations")
         .then((response) => response.json())
         .then((data) => setDestinations(data));
     } catch (error) {
@@ -44,7 +44,7 @@ const Trip = () => {
 
   const handleDelete = async () => {
     try {
-      await fetch(`/api/destination/${selectedDestination._id}`, {
+      await fetch(`/api/destinations/${selectedDestination._id}`, {
         method: "DELETE",
       });
       fetchDestinations();

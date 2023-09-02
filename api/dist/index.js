@@ -15,8 +15,8 @@ mongoose.connect(process.env.MONGO_URL).then(console.log('Connected to DB'))["ca
 })["catch"](function (err) {
   return console.log(err);
 });
-app.use("/auth", authRoute);
-app.use('/destinations', destinationRoute);
+app.use("/api/auth", authRoute);
+app.use('/api/destinations', destinationRoute);
 app.listen('5001', function () {
   return console.log('Server is running on port 5001...');
 });
