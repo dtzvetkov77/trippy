@@ -43,7 +43,7 @@ const LoginForm = () => {
     if (Object.keys(formErrors).length === 0) {
       try {
         // Send login request
-        const response = await fetch("/api/auth/login", {
+        const response = await fetch("https://trippy-server.onrender.com/api/auth/login", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",

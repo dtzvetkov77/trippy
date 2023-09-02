@@ -4,7 +4,7 @@ import react from '@vitejs/plugin-react'
 export default defineConfig({
   server: {
     proxy: {
-      "/api": {
+      "https://trippy-server.onrender.com/api": {
         target: "http://localhost:5001",
         secure: false,
       },

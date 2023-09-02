@@ -95,7 +95,7 @@ function CreateForm () {
       if (Object.keys(formErrors).length === 0) {
         try {
           // Send the form data to the backend API for creating a new destination
-          const response = await fetch("/api/destinations/create", {
+          const response = await fetch("https://trippy-server.onrender.com/api/destinations/create", {
             method: "POST",
             headers: {
               "Content-Type": "application/json",
