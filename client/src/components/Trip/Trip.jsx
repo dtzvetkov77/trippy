@@ -54,7 +54,7 @@ const Trip = () => {
       console.error(error);
     }
   };
-
+  
   return (
     <div className="trip">
       <h1>Recent Trips</h1>
@@ -69,12 +69,14 @@ const Trip = () => {
                 <img src={destination.imageUrl} alt={destination.title} />
               </div>
               {authorized ? (
-                <button
+                <div>
+                  <button
                   className="details-btn"
                   onClick={() => handleOpenModal(destination)}
                 >
                   Details
                 </button>
+                </div>
               ) : null}
             </div>
           ))}

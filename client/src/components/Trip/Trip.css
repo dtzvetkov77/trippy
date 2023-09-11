@@ -16,6 +16,8 @@
 }
 
 .t-card{
+    display: flex;
+    flex-direction: column;
     text-align: start;
     box-shadow: 0 5px 25px 2px rgba(0, 0, 0, 0.11);
     border-radius: 7px;
@@ -51,11 +53,12 @@
 }
 
 .details-btn {
-    margin-top: 1rem;
+    margin-top: 2rem;
 }
 
-.btn-container button:nth-last-child(2){
-    margin-right: 3rem;
+.btn-container {
+    display: flex;
+    gap: 2rem;
 }
 
 .empty {
@@ -73,16 +76,17 @@
   
 
 @media screen and (max-width: 850px) {
-    .trip{
-        margin: 4rem 2rem;
-    }
+    
 
     .tripcard {
-        flex-direction: column;
-        align-items: center;
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    justify-items: center;
     }
+
+    
     .t-card{
-        width: 60%;
+        width: 90%;
         margin-bottom: 1.5rem;
     }
 }

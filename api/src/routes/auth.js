@@ -3,6 +3,8 @@ const bcrypt = require("bcrypt");
 const User = require("../models/User");
 const jwt = require('jsonwebtoken')
 
+const secret = process.env.JWT_SECRET
+
 // Validate user registration data
 const validateUserRegistration = (req, res, next) => {
   const { username, email, password } = req.body;
@@ -59,7 +61,7 @@ router.post("/login", async (req, res) => {
       }
   
     //   Generate a JWT token
-      const token = jwt.sign({ userId: user._id }, "your-secret-key", {
+      const token = jwt.sign({ userId: user._id }, secret , {
         expiresIn: '8h',
       });
   

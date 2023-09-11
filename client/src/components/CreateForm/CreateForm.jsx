@@ -81,7 +81,7 @@ function CreateForm () {
  
     const fetchDestinations = async () => {
       try {
-        await fetch("/api/destinations")
+        await fetch("https://trippy-server.onrender.com/api/destinations")
           .then((response) => response.json())
           .then((data) => setDestinations(data));
       } catch (error) {

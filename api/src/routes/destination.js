@@ -2,6 +2,7 @@ const Destination = require("../models/Destination");
 const router = require("express").Router();
 
 const jwt = require('jsonwebtoken');
+const secret = process.env.JWT_SECRET
 
 const authenticate = (req, res, next) => {
   // Get the JWT token from the request headers
@@ -14,7 +15,7 @@ const authenticate = (req, res, next) => {
 
   try {
     // Verify and decode the JWT token
-    const decodedToken = jwt.verify(token, 'your-secret-key');
+    const decodedToken = jwt.verify(token,secret );
     // Set the decoded user information to the request object
     req.user = {sub: decodedToken.userId}
 

@@ -157,7 +157,7 @@ const EditForm = () => {
           onBlur={handleBlur}
         />
 
-        <button>Create</button>
+        <button>Edit</button>
       </form>
     </div>
   );
