@@ -20,8 +20,10 @@ const Trip = () => {
   }, [setAuthorized]);
 
   useEffect(() => {
-    fetchDestinations();
-  }, []);
+    const interval = setInterval(() =>  fetchDestinations(), 5 * 60 * 1000);
+    return () => clearInterval(interval);
+  });
+
 
   const fetchDestinations = async () => {
     try {
