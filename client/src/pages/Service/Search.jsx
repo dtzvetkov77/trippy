@@ -6,14 +6,14 @@ import React from 'react'
 import Footer from "../../components/Footer/Footer"
 import Search from "../../components/Search/Search"
 
-function Service() {
+function Search() {
   return (
     <>
     <Navbar/>
     <Hero 
     cName="hero-mid"
     heroImg={ServiceImg}
-    title="Service"
+    title="Search"
     btnClass="hide"
     textCName="hero-mid-text"
     />
@@ -23,4 +23,4 @@ function Service() {
   )
 }
 
-export default Service
+export default Search

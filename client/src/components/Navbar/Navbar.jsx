@@ -46,7 +46,7 @@ function Navbar() {
         }
           
           <Link className="nav-links" to="/service">
-            <i className="fa-solid fa-briefcase"></i>Service
+            <i className="fa-solid fa-briefcase"></i>Search
           </Link>
           
             <Link className="nav-links" to="/contact">
