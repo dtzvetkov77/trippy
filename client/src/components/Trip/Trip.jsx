@@ -20,7 +20,7 @@ const Trip = () => {
   }, [setAuthorized]);
 
   useEffect(() => {
-    const interval = setInterval(() =>  fetchDestinations(), 5 * 60 * 1000);
+    const interval = setInterval(() =>  fetchDestinations(),1000);
     return () => clearInterval(interval);
   });
 
