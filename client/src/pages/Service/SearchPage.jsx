@@ -6,7 +6,7 @@ import React from 'react'
 import Footer from "../../components/Footer/Footer"
 import Search from "../../components/Search/Search"
 
-function Search() {
+function SearchPage() {
   return (
     <>
     <Navbar/>
@@ -23,4 +23,4 @@ function Search() {
   )
 }
 
-export default Search
+export default SearchPage
