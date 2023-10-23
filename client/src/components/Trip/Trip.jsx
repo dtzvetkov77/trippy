@@ -65,11 +65,12 @@ const Trip = () => {
         <div className="tripcard">
           {destinations.map((destination) => (
             <div key={destination._id} className="t-card">
-              <h2>{destination.title}</h2>
-              <p>{destination.description}</p>
               <div className="t-image">
                 <img src={destination.imageUrl} alt={destination.title} />
               </div>
+              <h2>{destination.title}</h2>
+              <p>{destination.description}</p>
+              
               {authorized ? (
                 <div>
                   <button
