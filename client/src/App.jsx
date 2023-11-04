@@ -70,7 +70,7 @@ function App() {
           />
           <Route
             path="/login"
-            element={authorized ? <Navigate to="/" /> : <Login />}
+            element={authorized ? <Navigate to="/"/> : <Login />}
           />
           <Route
             path="/create"
