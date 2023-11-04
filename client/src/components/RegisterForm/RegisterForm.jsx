@@ -2,6 +2,7 @@ import { useState, useContext } from 'react'
 import './RegisterForm.css'
 import {  useNavigate } from "react-router-dom";
 import { Link } from 'react-router-dom';
+import { Button } from '@nextui-org/react';
 
 
 const RegisterForm = () => {
@@ -155,7 +156,7 @@ const RegisterForm = () => {
       onBlur={handleBlur}
        />
        
-      <button>Register</button>
+      <button className='bg-black text-white'>Register</button>
       <p className='login-link'>You have an account?<Link style={{textDecoration: 'none', color: 'black'}} to='/login'><span>Log in</span></Link></p>
       </form>
     </div>

@@ -139,7 +139,7 @@ const LoginForm = () => {
       onBlur={handleBlur}
        />
        
-      <button>Login</button>
+      <button className='bg-black text-white'>Login</button>
       <p className='login-link'>You don't have an account?<Link style={{textDecoration: 'none', color: 'black'}} to='/register'><span>Register</span></Link></p>
       </form>
     </div>

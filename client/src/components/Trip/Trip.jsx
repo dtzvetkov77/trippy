@@ -1,13 +1,15 @@
 import { useContext, useEffect, useState } from "react";
-import "./Trip.css";
-import Modal from "../Modal/Modal";
+import {  Image, Modal,   ModalContent,   ModalHeader, Button,   ModalBody,   ModalFooter, useDisclosure} from "@nextui-org/react";
 import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../Context/AuthContext";
+import './Trip.css'
+
+
 const Trip = () => {
   const navigate = useNavigate();
   const [destinations, setDestinations] = useState([]);
-  const [modalOpen, setModalOpen] = useState(false);
   const [selectedDestination, setSelectedDestination] = useState(null);
+  const {isOpen, onOpen, onOpenChange} = useDisclosure();
 
   const { user, authorized, setAuthorized } = useContext(AuthContext);
   useEffect(() => {
@@ -36,12 +38,12 @@ const Trip = () => {
   };
   const handleOpenModal = (destination) => {
     setSelectedDestination(destination);
-    setModalOpen(true);
+    onOpen();
   };
 
   const handleCloseModal = () => {
     setSelectedDestination(null);
-    setModalOpen(false);
+    onOpenChange(false);
   };
 
   const handleDelete = async () => {
@@ -50,7 +52,7 @@ const Trip = () => {
         method: "DELETE",
       });
       fetchDestinations();
-      setModalOpen(false);
+      onOpenChange(false)
       navigate("/");
     } catch (error) {
       console.error(error);
@@ -58,6 +60,7 @@ const Trip = () => {
   };
   
   return (
+  <> 
     <div className="trip">
       <h1>Recent Trips</h1>
       <p>You can discover unique destinations using Google Maps</p>
@@ -66,19 +69,16 @@ const Trip = () => {
           {destinations.map((destination) => (
             <div key={destination._id} className="t-card">
               <div className="t-image">
-                <img src={destination.imageUrl} alt={destination.title} />
+                <img className="object-cover" src={destination.imageUrl} alt={destination.title} />
               </div>
-              <h2>{destination.title}</h2>
+              <h2 className="mt-3 text-xl">{destination.title}</h2>
               <p>{destination.description}</p>
               
               {authorized ? (
                 <div>
-                  <button
-                  className="details-btn"
-                  onClick={() => handleOpenModal(destination)}
-                >
-                  Details
-                </button>
+                  <Button variant="solid" className="font-normal bg-black text-white" onPress={() => handleOpenModal(destination)}>
+                    Details
+                  </Button>
                 </div>
               ) : null}
             </div>
@@ -87,36 +87,35 @@ const Trip = () => {
       ) : (
         <p className="empty">No destinations available.</p>
       )}
-
-      {modalOpen && (
-        <Modal onClose={handleCloseModal}>
-          {selectedDestination && (
-            <div>
-              <h2>{selectedDestination.title}</h2>
-              <p>{selectedDestination.description}</p>
-              <img
-                className="modal-image"
-                src={selectedDestination.imageUrl}
-                alt=""
-              />
-              {authorized &&
-              user &&
-              selectedDestination.owner === user.userId ? (
-                <div className="btn-container">
-                  <Link to={`/edit/${selectedDestination._id}`}>
-                    <button className="edit">Edit</button>
-                  </Link>
-
-                  <button onClick={handleDelete} className="delete">
-                    Delete
-                  </button>
-                </div>
-              ) : null}
-            </div>
-          )}
-        </Modal>
-      )}
+      
     </div>
+
+    <Modal hideCloseButton={true} className="max-w-[600px]" backdrop="blur" isOpen={isOpen} onClose={handleCloseModal} placement='auto' size="md">
+    <ModalContent>
+      <ModalHeader className="flex flex-col gap-1"> <h2 className="m-3">{selectedDestination?.title}</h2> </ModalHeader>
+      <ModalBody className="flex flex-row ">
+          
+            {selectedDestination && <Image width={200} height={100} className="object-cover" src={selectedDestination.imageUrl} alt={selectedDestination.title} />}      
+          <p>{selectedDestination?.description}</p>
+      </ModalBody>
+      <ModalFooter>
+        {authorized && user && selectedDestination?.owner === user.userId && (
+          <>
+            <Link to={`/edit/${selectedDestination?._id}`}>
+              <Button className="bg-black text-white" flat auto>
+                Edit
+              </Button>
+            </Link>
+            <Button color="danger" className="hover:bg-red-500" onPress={handleDelete}>
+              Delete
+            </Button>
+          </>
+        )}
+
+      </ModalFooter>
+    </ModalContent>
+  </Modal>
+  </>
   );
 };
 

@@ -11,6 +11,7 @@ import { AuthContext } from "./Context/AuthContext";
 import { useEffect, useState } from "react";
 import Edit from "./pages/Edit/Edit";
 import SearchPage from "./pages/Service/SearchPage";
+import { NextUIProvider } from "@nextui-org/system";
 
 function App() {
   const [authorized, setAuthorized] = useState(false);
@@ -51,6 +52,7 @@ function App() {
   }, []);
 
   return (
+    <NextUIProvider>
     <AuthContext.Provider value={{ authorized, setAuthorized, user, setUser }}>
       <div className="App">
         <Routes>
@@ -76,11 +78,12 @@ function App() {
           />
           <Route
             path="/edit/:id"
-            element={authorized ? <Edit /> : <Navigate to="/login" />}
+            element={<Edit /> }
           />
         </Routes>
       </div>
     </AuthContext.Provider>
+    </NextUIProvider>
   );
 }
 

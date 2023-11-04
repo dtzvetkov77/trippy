@@ -5,7 +5,7 @@ function Footer() {
     <div className='footer'>
         <div className="top">
             <div>
-              <h1>Trippy</h1>
+              <h1 className='text-[32px]'>Trippy</h1>
             <p>Choose your favorite destination</p>  
             </div>
             <div>

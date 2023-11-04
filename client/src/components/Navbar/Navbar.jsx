@@ -1,4 +1,5 @@
 import "./Navbar.css";
+import {Button, ButtonGroup} from "@nextui-org/react";
 import {  useState, useContext, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import {AuthContext} from "../../Context/AuthContext";
@@ -56,9 +57,9 @@ function Navbar() {
         </li>
          
          {authorized 
-         ?  <button onClick={handleLogout}>Logout</button>
+         ?  <button className="bg-black text-white" onClick={handleLogout}>Logout</button>
          :  <Link to="/register">
-            <button>Sign Up</button>
+            <Button className="bg-black text-white font-semibold rounded-md">Sign Up</Button>
             </Link>
         }          
         
