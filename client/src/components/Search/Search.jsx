@@ -2,15 +2,38 @@ import './Search.css'
 
 import React, { useState, useEffect } from "react";
 import "./Search.css";
+import { AuthContext } from '../../Context/AuthContext';
+import { Button } from '@nextui-org/react';
 
 const Search = () => {
+  const [selectedDestination, setSelectedDestination] = useState(null);
+  const {isOpen, onOpen, onOpenChange} = useDisclosure();
   const [searchQuery, setSearchQuery] = useState("");
   const [destinations, setDestinations] = useState([]);
   const [filteredDestinations, setFilteredDestinations] = useState([]);
+  const { user, authorized, setAuthorized } = useContext(AuthContext);
+  useEffect(() => {
+    const checkAuthorization = () => {
+      const token = localStorage.getItem("token");
+      setAuthorized(!!token);
+    };
+
+    checkAuthorization();
+  }, [setAuthorized]);
 
   useEffect(() => {
     fetchDestinations();
   }, []);
+
+  const handleOpenModal = (destination) => {
+    setSelectedDestination(destination);
+    onOpen();
+  };
+
+  const handleCloseModal = () => {
+    setSelectedDestination(null);
+    onOpenChange(false);
+  };
 
   const fetchDestinations = async () => {
     try {
@@ -34,6 +57,7 @@ const Search = () => {
   };
 
   return (
+    <>
     <div className="search-container"> 
     <h2>Matching Destinations</h2>
       <input
@@ -56,6 +80,14 @@ const Search = () => {
 
                  <img src={destination.imageUrl} alt={destination.title} />
               </div>
+
+              {authorized ? (
+                <div>
+                  <Button variant="solid" className="font-normal bg-black text-white" onPress={() => handleOpenModal(destination)}>
+                    Details
+                  </Button>
+                </div>
+              ) : null}
              
               
             </div>
@@ -66,6 +98,33 @@ const Search = () => {
         <p className='empty'>No matching destinations found.</p>
       )}
     </div>
+
+<Modal hideCloseButton={true} className="max-w-[600px]" backdrop="blur" isOpen={isOpen} onClose={handleCloseModal} placement='auto' size="md">
+<ModalContent>
+  <ModalHeader className="flex flex-col gap-1"> <h2 className="m-3">{selectedDestination?.title}</h2> </ModalHeader>
+  <ModalBody className="flex flex-row ">
+      
+        {selectedDestination && <Image width={200} height={100} className="object-cover" src={selectedDestination.imageUrl} alt={selectedDestination.title} />}      
+      <p>{selectedDestination?.description}</p>
+  </ModalBody>
+  <ModalFooter>
+    {authorized && user && selectedDestination?.owner === user.userId && (
+      <>
+        <Link to={`/edit/${selectedDestination?._id}`}>
+          <Button className="bg-black text-white" flat auto>
+            Edit
+          </Button>
+        </Link>
+        <Button color="danger" className="hover:bg-red-500" onPress={handleDelete}>
+          Delete
+        </Button>
+      </>
+    )}
+
+  </ModalFooter>
+</ModalContent>
+</Modal>
+</>
   );
 };
 
