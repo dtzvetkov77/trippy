@@ -3,7 +3,7 @@ import './Search.css'
 import React, { useState, useEffect, useContext } from "react";
 import "./Search.css";
 import { AuthContext } from '../../Context/AuthContext';
-import { Modal,   ModalContent,   ModalHeader, Button,   ModalBody,   ModalFooter, useDisclosure} from "@nextui-org/react";
+import { Modal,   ModalContent,   ModalHeader, Button,   ModalBody,   ModalFooter, useDisclosure, Image} from "@nextui-org/react";
 import { Link, useNavigate } from 'react-router-dom';
 
 const Search = () => {
