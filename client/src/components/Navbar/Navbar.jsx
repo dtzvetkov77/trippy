@@ -46,7 +46,7 @@ function Navbar() {
           : null
         }
           
-          <Link className="nav-links" to="/service">
+          <Link className="nav-links" to="/search">
           <i class="fa-solid fa-magnifying-glass"></i>Search
           </Link>
           

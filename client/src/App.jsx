@@ -58,7 +58,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/about" element={<About />} />
-          <Route path="/service" element={<SearchPage />} />
+          <Route path="/search" element={<SearchPage />} />
           <Route
             path="/create"
             element={authorized ? <Create /> : <Navigate to="/login" />}
