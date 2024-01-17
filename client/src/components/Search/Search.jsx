@@ -1,6 +1,6 @@
 import './Search.css'
 
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import "./Search.css";
 import { AuthContext } from '../../Context/AuthContext';
 import { Modal,   ModalContent,   ModalHeader, Button,   ModalBody,   ModalFooter, useDisclosure} from "@nextui-org/react";
