@@ -4,6 +4,7 @@ import React, { useState, useEffect, useContext } from "react";
 import "./Search.css";
 import { AuthContext } from '../../Context/AuthContext';
 import { Modal,   ModalContent,   ModalHeader, Button,   ModalBody,   ModalFooter, useDisclosure} from "@nextui-org/react";
+import { Link } from 'react-router-dom';
 
 const Search = () => {
   const [selectedDestination, setSelectedDestination] = useState(null);

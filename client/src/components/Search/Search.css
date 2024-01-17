@@ -52,6 +52,7 @@
 
   .image-container{
     height: 200px;
+    margin-bottom: 6px;
     overflow: hidden;
     border-radius: 7px;
   }
