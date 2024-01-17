@@ -4,9 +4,10 @@ import React, { useState, useEffect, useContext } from "react";
 import "./Search.css";
 import { AuthContext } from '../../Context/AuthContext';
 import { Modal,   ModalContent,   ModalHeader, Button,   ModalBody,   ModalFooter, useDisclosure} from "@nextui-org/react";
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 const Search = () => {
+  const navigate = useNavigate();
   const [selectedDestination, setSelectedDestination] = useState(null);
   const {isOpen, onOpen, onOpenChange} = useDisclosure();
   const [searchQuery, setSearchQuery] = useState("");
@@ -41,6 +42,19 @@ const Search = () => {
       const response = await fetch("https://trippy-server.onrender.com/api/destinations");
       const data = await response.json();
       setDestinations(data);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  const handleDelete = async () => {
+    try {
+      await fetch(`https://trippy-server.onrender.com/api/destinations/${selectedDestination._id}`, {
+        method: "DELETE",
+      });
+      fetchDestinations();
+      onOpenChange(false)
+      navigate("/");
     } catch (error) {
       console.error(error);
     }
