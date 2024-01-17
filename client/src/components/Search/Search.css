@@ -15,7 +15,8 @@
   }
   
   .matching-destinations {
-    margin: 4rem 6rem
+    margin: 4rem 6rem;
+    width:1250px;
   }
 
   .search-container h2 {
